@@ -10,6 +10,6 @@ for a in range (1, 100):
 	for b in range (1, 100):
 		c = (a**2 + b**2)**0.5
 		if c % 1 == 0:
-			tri = tri + 1
+			tri += 1
 			print ("a = " + str(a) + ", b = " + str(b) + ", c = " + str(int(c)))
 print ("There are", tri, "Pythagorean triples with sides a and b less than 100.")
