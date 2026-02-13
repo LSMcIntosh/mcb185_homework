@@ -11,13 +11,24 @@ As per the wikipedia page for 'Phred quality score':
 Phred quality scores (Q) and base-calling error probabilities P are related by
 Q = -10 log(P)
 P = 10^(-Q/10)
+
+ASCII valie - 32 = quality value symbol
+
+'A' quality score = 33 quality score
+33-126 or restrict to 50
 '''
+
+'''
+Q + 32 = ASCII
+'''
+
 
 import math
 
 def phred_to_error(Q):
 	P = 10 ** (-Q / 10)
 	return P
+	
 
 def error_to_phred(P):
 	if P <= 0: return None
