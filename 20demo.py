@@ -3,14 +3,21 @@ import sys
 import random
 import itertools
 
-'''
+# my text editor can collapse sections within a '''...''' so I move my notes into them after I'm done
+# so that's why there's so many
+
+''' # print(f'{}') practice
+
 print(f'{math.sqrt(25)}')
 print(f'{"hello world":.<20}')
 print(f'{"hello again":.^20}')
 print(f'{"hello again":.>20}')
 print(f'{20:<10} {10}')
 ''' # print(f'{}') practice
-'''
+
+
+''' # 2/12/26 Notes Part1
+
 people = int(sys.argv[1])		
 calendar = int(sys.argv[2])		
 iterations	= int(sys.argv[3])
@@ -44,8 +51,11 @@ probability = sames/iterations  # probability of a same birthday
 # probability of same birthday
 
 calendar = [0] 
-''' # 2/12/26 Notes
-'''
+''' # Notes Part1
+
+
+'''# 2/19/26 Notes Part2
+
 def translate(orf):
 	codons = [''.join(t) for t in itertools.product('ACGT', repeat=3)]
 	trans = 'KNKNTTTTRSRSIIMIQHQHPPPPRRRRLLLLEDEDAAAAGGGGVVVV*Y*YSSSS*CWCLFLF'
@@ -91,9 +101,12 @@ def random_subseq(seq, n, k):
 		if random.random < 0.5: subseq = anti(subseq)
 		subs.append(subseq)
 	return subs
-''' # 2/19/26 Notes p1
+''' # Notes Part2
+
+
 '''
 test test
+# 2/19/26 Notes Part3
 
 def mutate(s, p):
 	seq = list(s)
@@ -122,11 +135,11 @@ def random_dna(n, X = [0.25, 0.25, 0.25, 0.25]):
 
 for i in range(5):
 	print(i, random_dna(10))
-''' # 2/19 Notes p2
-'''
+''' # Notes Part3
 
-''' # wow more notes p3
-'''
+
+''' # matrix notes
+
 alph = sys.argv[1]
 mat = sys.argv[2]
 mis = sys.argv[3]
@@ -145,8 +158,10 @@ for i in range(len(alph)):
 		if i == j: print(mat, end=' ')
 		else: print(mis, end=' ')	
 	print() # end the row
-''' # matrix 
-'''
+''' # matrix notes
+
+
+''' # practice problems unit 2
 
 # Write a function that returns the minimum value of a list.
 def list_minimim(vals):
