@@ -140,6 +140,7 @@ for i in range(5):
 
 ''' # matrix notes
 
+# 1st attempt
 alph = sys.argv[1]
 mat = sys.argv[2]
 mis = sys.argv[3]
@@ -156,6 +157,27 @@ for i in range(len(alph)):
 	# print the row
 	for j in range(len(alph)):
 		if i == j: print(mat, end=' ')
+		else: print(mis, end=' ')	
+	print() # end the row
+
+
+# 2nd attempt
+alph = sys.argv[1]
+mat = sys.argv[2]
+mis = sys.argv[3]
+
+# print header
+print('   ', end='')
+for c in alph: print(c, end='  ')
+print()
+
+# print body
+for i in range(len(alph)):
+	# print the leading letter
+	print(alph[i], end=' ')
+	# print the row
+	for j in range(len(alph)):
+		if alph[i] == alph[j]: print(mat, end=' ')
 		else: print(mis, end=' ')	
 	print() # end the row
 ''' # matrix notes
