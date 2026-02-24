@@ -16,3 +16,7 @@ for p in probs:
 	h -= p * math.log2(p)
 
 print(f'{h:.4f}')
+
+
+	
+
