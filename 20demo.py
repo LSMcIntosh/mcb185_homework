@@ -51,7 +51,7 @@ probability = sames/iterations  # probability of a same birthday
 # probability of same birthday
 
 calendar = [0] 
-''' # Notes Part1
+''' # Notes Part1 - birthday paradox
 
 
 '''# 2/19/26 Notes Part2
@@ -101,7 +101,7 @@ def random_subseq(seq, n, k):
 		if random.random < 0.5: subseq = anti(subseq)
 		subs.append(subseq)
 	return subs
-''' # Notes Part2
+''' # Notes Part2 - dna to protein
 
 
 '''
@@ -135,7 +135,7 @@ def random_dna(n, X = [0.25, 0.25, 0.25, 0.25]):
 
 for i in range(5):
 	print(i, random_dna(10))
-''' # Notes Part3
+''' # Notes Part3 - mutation probability
 
 
 ''' # matrix notes
