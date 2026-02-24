@@ -5,42 +5,33 @@ The chr() function turns an ASCII value into a letter.
 
 Demonstrate the functions work by calling them several times. Edge cases should return None.
 '''
-
-'''
-As per the wikipedia page for 'Phred quality score':
-Phred quality scores (Q) and base-calling error probabilities P are related by
-Q = -10 log(P)
-P = 10^(-Q/10)
-
-ASCII valie - 32 = quality value symbol
-
-'A' quality score = 33 quality score
-33-126 or restrict to 50
-'''
-
 '''
 Q + 32 = ASCII
+ASCII - 32 = Q
+
+'A' quality score = 33 quality score
+restrict quality scores to 33-126
 '''
 
 
-import math
+def phred_to_ascii(q):
+	if q < 33 or q > 126: return None
+	a = q + 32
+	return chr(a)
 
-def phred_to_error(Q):
-	P = 10 ** (-Q / 10)
-	return P
+def ascii_to_phred(a):
+	an = ord(a)
+	if an < 33 or an > 126: return None
+	q = ord(a) - 32
+	return q
 	
+test1 = phred_to_ascii(33)
+test2 = ascii_to_phred('A')
+edgecase1 = phred_to_ascii(14)
+edgecase2 = ascii_to_phred('~')
 
-def error_to_phred(P):
-	if P <= 0: return None
-	Q = -10 * math.log10(P)
-	return Q
+print('the character of phred #33 =', test1)
+print("the phred value of the character 'A' is:", test2)
+print('the character of phred #14 gives:', edgecase1)
+print("the phred value of the character '~' is:", edgecase2)
 	
-test1 = phred_to_error(10)
-test2 = error_to_phred(0.1)
-edgecase1 = phred_to_error(0)
-edgecase2 = error_to_phred(0)
-
-print ("Test 1: A phred value of Q10 =", test1)
-print ("Test 2: An error rate of 0.1 = Q" + str(int(test2)))
-print ("Test 3: A phred value of Q0 =", edgecase1)
-print ("Test 4: An error rate of 0 returns", edgecase2)
