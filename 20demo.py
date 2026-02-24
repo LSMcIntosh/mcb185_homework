@@ -207,11 +207,33 @@ def list_mean(vals):
 	
 # Write a function that computes the entropy of a probability distribution.
 
+def prob_entropy(probs):
+	for prob in probs:
+		if prob >= 1 or prob <=0: sys.exit('prob out of range')
+	if not math.isclose(sum(probs), 1): sys.exit('sum =/= 1)
+	h = 0
+	for p in probs:
+		h -= p * math.log2(p)
+	return h
 
 # Write a function that computes the Kullback-Leibler distance between 
 # two sets of probability distributions.
-''' # practice problems unit 2
 
+def KLd(P, Q):
+	#convert each histogram to probabilities
+	probP = []
+	probQ = []
+	for p in P: 
+		probP.append(p/sum(P))
+	for q in Q: 
+		if q == 0: sys.exit('Undefined value')
+		probQ.append(q/sum(Q))
+	KL = 0
+	for i in range(len(P)):
+		KL += probP[i] * math.log10(probP[i] / probQ[i])
+	return KL
+
+''' # practice problems unit 2
 
 
 
