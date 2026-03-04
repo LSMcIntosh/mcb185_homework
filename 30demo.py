@@ -137,4 +137,25 @@ string3 = 'then why did i get this wrong'
 print(crazycase(string1))
 print(crazycase(string2))
 print(crazycase(string3))
-''' # test question WRONG??
+''' # crazycase test question
+'''
+
+''' # stats test question
+# stats function exactly as I wrote it on the test:
+def stats(X):
+	X.sort()
+	n = len(X)
+	midpoint = n//2
+	tot1 = 0
+	for val in X: tot1 += val
+	mean = tot1/n
+	tot2 = 0
+	for val in X: tot2 += (val/mean)**2
+	stdev = (tot2/n)**(0.5)
+	if len(X) % 2 == 1: median = X[midpoint]
+	else: median = (X[midpoint] + X[midpoint + 1])/2
+	return mean, stdev, median
+	
+X = [1, 2, 3, 4, 5]
+res = stats(X)
+print(res[0], res[1], res[2])
