@@ -1,5 +1,9 @@
 import math
 import argparse
+import sys
+import random
+import math
+import mcb185 # how again
 ''' Demo, practice, and in-class notes for Unit 3'''
 '''
 # Exam will probably only go from 41 to 49
@@ -139,8 +143,6 @@ print(crazycase(string2))
 print(crazycase(string3))
 ''' # crazycase test question
 '''
-
-''' # stats test question
 # stats function exactly as I wrote it on the test:
 def stats(X):
 	X.sort()
@@ -159,3 +161,122 @@ def stats(X):
 X = [1, 2, 3, 4, 5]
 res = stats(X)
 print(res[0], res[1], res[2])
+''' # stats test question
+# Notes 3/5
+'''
+def practice1():
+	for a in range(1, 15):
+		for b in range(a+1, 15):
+			c = (a**2 + b**2)**(0.5)
+			if c % 1 != 0: continue
+			print(a, b, c)
+
+# 42: Triples
+def triples():
+	stuff = ('A', 'B', 'C', 'D')
+	for i in range(len(stuff)):
+		for j in range(i+1, len(stuff)):
+			print(stuff[i], stuff[j])
+''' # 42: Triples
+'''
+cal = int(sys.argv[1])
+num = int(sys.argv[2])
+
+shared_birthdays = 0
+rounds = 50
+for g in range(rounds):
+	shared = False
+	birthdays = []
+	for _ in range(num):
+		birthdays.append(random.randint(0, cal-1))
+	for i in range(num):
+		for j in range(i+1, num):
+			if birthdays[i] == birthdays[j]:
+			shared = True
+	if shared: shared_birthdays += 1		
+print(shared_birthdays/rounds)
+''' # 43 Birthday paradox 1				
+'''
+cal = int(sys.argv[1]) # days in the year
+num = int(sys.argv[2]) # number of people
+
+shared = False
+calendar = [0] * cal
+for _ in range(num):
+	day = random.randint(0, cal-1)
+	calendar[day] += 1
+for date in range(cal):
+	if calendar[date] > 1: shared = True
+if shared: print('hooray')
+else:	   print('not this time')
+''' # 44 Birthday paradox 2
+'''
+def char_count1():
+	s =  'hello	this is fun!'
+	characters = []
+	char_count = []
+	#print(char_count(s))
+	for c in s:
+		if c not in characters:
+			print('first time seeing', c)
+			characters.append(c)
+			char_count.append(1)
+		else:
+		print('seen', c, )
+			idx = characters.index(c)
+			char_count[idx] += 1
+			
+def char_count2(s):
+	chars = [0] * 128
+	for c in s:
+		chars[ord(c)] += 1
+	for i in range(len(chars)):
+		if chars[i] == 0: continue
+		print(ascii(i), chars[i])
+''' # 46 char_count
+''' ''' # 49 dust (again)
+
+# import argparse
+
+seq = 'ACGTACGTAAAAAAAAAAACGTACGT'
+hard = 'ACGTACGTNNNNNNNNNNNCGTACGT'
+def entropy(seq):
+	pa = seq.count('A')/len(seq)
+	pc = seq.count('C')/len(seq)
+	pg = seq.count('G')/len(seq)
+	pt = seq.count('T')/len(seq)
+	h = 0
+	if pa != 0: h -= pa * math.log2(pa)
+	if pc != 0: h -= pc * math.log2(pc)
+	if pg != 0: h -= pg * math.log2(pg)
+	if pt != 0: h -= pt * math.log2(pt)
+	return h
+
+parser = argparse.ArgumentParser()
+parser.add_argument('fasta')
+parser.add_argument('-window', type=int, default=11)
+parser.add_argument('--threshold', type=float, default=1.1)
+parser.add_argumet('--wrap') ???
+parser.add_argument('--hard', action='store_true', help='perform hard masking, soft is default')
+arg = parser.parse_args()
+
+k = arg.window
+t = arg.threshold
+for defline, seq in mcb185.read_fasta(arg.fasta)
+
+	mask = list(seq)
+	for i in range(len(seq) -k+1):
+		if entropy(seq[i:i+k]) > t: continue
+		for j in range(i, i+k):	
+			if arg.hardL mask[j] = 'N'
+			else: mask[j] = seq[j].lower()
+	print('<', defline, sep='', )
+	seq = ''.join(mask)
+	for i in range(0, len(seq), arg.wrap):
+		print(seq[i:i+arg.wrap])
+		
+in CL: python3 programname.py ~/Code/MCB185/data/C.elegans
+
+
+
+
