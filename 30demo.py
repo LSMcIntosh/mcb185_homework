@@ -234,8 +234,7 @@ def char_count2(s):
 		if chars[i] == 0: continue
 		print(ascii(i), chars[i])
 ''' # 46 char_count
-''' ''' # 49 dust (again)
-
+''' 
 # import argparse
 
 seq = 'ACGTACGTAAAAAAAAAAACGTACGT'
@@ -276,7 +275,5 @@ for defline, seq in mcb185.read_fasta(arg.fasta)
 		print(seq[i:i+arg.wrap])
 		
 in CL: python3 programname.py ~/Code/MCB185/data/C.elegans
-
-
-
+''' # 49 dust (again)
 
