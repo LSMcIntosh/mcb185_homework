@@ -33,11 +33,11 @@ max_pos = 1
 i = 0
 
 while i < len(seq):
-	if seq[i] == 'A':
+	if seq[i] == 'A': # start with first IDed 'A'
 		run_start = i
 		run_len = 1
-		for j in range(i+1, len(seq)):
-			if seq[j] == 'A': run_len += 1
+		for j in range(i+1, len(seq)): # sequence though nt after 'A'
+			if seq[j] == 'A': run_len += 1 # add if more 'A' break if not
 			else: break
 		i = j
 		print(run_start, run_len)
