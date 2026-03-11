@@ -2,9 +2,9 @@ import math
 import argparse
 import sys
 import random
-import math
-import mcb185 # how again
+import mcb185
 ''' Demo, practice, and in-class notes for Unit 3'''
+# Notes 3/3 
 '''
 # Exam will probably only go from 41 to 49
 # Practice Exam 3 Question 45
@@ -45,7 +45,7 @@ while i < len(seq):
 		#	max_run = run_len
 		#	max_pos = run_start
 	i  += 1
-''' # Notes 3/3
+''' # E3Q45 polyA
 '''
 write a program Fizzprime.py
  - prints the numbers 1-100
@@ -63,7 +63,7 @@ for i in range(100):
 	if is_prime(i) == True: print(i, 'fizz')
 	
 #py | grep -v fizz > fizz.txt
-''' #fizzprime with grep
+''' # fizzprime with grep
 '''
 def entropy(s):
 	tot = len(s)
@@ -124,7 +124,7 @@ def myentropy(s):
 		prob = num/sum(ntcount)
 		ntprob.append(prob)
 	# ughhhhh
-''' #really inefficient entropy calc (mine)
+''' # really inefficient entropy calc (mine)
 '''
 # the function, exactly as I wrote it out on the exam
 def crazycase(string):
@@ -276,4 +276,133 @@ for defline, seq in mcb185.read_fasta(arg.fasta)
 		
 in CL: python3 programname.py ~/Code/MCB185/data/C.elegans
 ''' # 49 dust (again)
+# Notes 3/10
+'''
+# use a list for the PEOPLE, not the calender
+# import sys
+# import random
+num_days = int(sys.argv[1])
+num_people = int(sys.argv[2])
+birthdays = list()
+same_birthday = False
+
+# get all birthdays into a list
+for _ in range(num_people):
+	date = random.randint(0, num_days - 1)
+	if date in birthdays:
+		same_birthday = True
+		break
+	birthdays.append(date)
+print(same_birthday)
+''' # 43 practice
+'''
+# use a list for the CALENDAR, not the people
+# import sys
+# import random
+num_days = int(sys.argv[1])
+num_people = int(sys.argv[2])
+
+# make an empty calendar
+calendar = [0] * num_days
+
+# fill calendar with dates and check as you go
+same_birthday = False
+for _ in range(num_people):
+	date = random.randint(0, num_days - 1)
+	if calendar[date] != 0: 
+		same_birthday = True
+		break
+	calendar[date] += 1
+print(same_birthday)
+
+# check cal for shared birthdays
+# found = False
+# for birthday_count in calendar:
+#     if birthday_count > 1: found = True
+''' # 44 practice
+'''
+ # with command line arguments <alphabet> <plus> <minus>
+ 
+alph = sys.argv[1]
+mat = sys.argv[2]
+mis = sys.argv[3]
+
+print('   ', end='')
+for let in alph: print(let, end='  ')
+print()
+for i in range(len(alph)):
+	print(alph[i], end=' ')
+	for j in range(len(alph)):
+		if alph[i] == alph[j]: print(mat, end=' ')
+		else:				   print(mis, end=' ')
+	print()
+
+def another(alph, mat, mis):
+	print('   ', end='')
+	for nt in alph: print(nt, end='  ')
+	print()
+	for nt1 in alph:
+		print(nt1, end=' ')
+		for nt2 in alph:
+			if nt1 == nt2: print(mat, end=' ')
+			else:		   print(mis, end=' ')
+		print() # with nt1/2 in alph instead of for i/j in range()
+''' # 41 practice (matrix)
+'''
+seq = 'ACGTAAAAAAACGT'
+
+def entropy(seq):
+	pa = seq.count('A') / len(seq)
+	pc = seq.count('C') / len(seq)
+	pg = seq.count('G') / len(seq)
+	pt = seq.count('T') / len(seq)
+	h = 0
+	if pa != 0: h -= pa * math.log2(pa)
+	if pc != 0: h -= pc * math.log2(pc)
+	if pg != 0: h -= pg * math.log2(pg)
+	if pt != 0: h -= pt * math.log2(pt)
+	return h
+
+def dust(seq, w, t):
+	eseq = list(seq)
+	for i in range(len(seq) -w+1):
+		win = seq[i:i+w]
+		if entropy(win) < t:
+			for j in range(i, i+w):
+				eseq[j] = 'N' # we edit the list, NOT the seq
+				# soft: eseq[j] = seq[j].lower()
+	return ''.join(eseq)
+''' # 49 practice (function) GUARENTEED ON THE EXAM
+'''
+# on exam, import sys
+# CLI = python3 gc_analysis.py ATATACAAATTACGAT 7
+seq = sys.argv[1]
+k = int(sys.argv[2])
+for i in range(len(seq) -k+1):
+	subseq = seq[i:i+k]
+	c = subseq.count('C')
+	g = subseq.count('G')
+	gc_comp = (c + g) / len(subseq)
+	if g + c == 0: gc_skew = 0
+	else:		   gc_skew = (g - c) / (g + c)
+	# OR gc_skew = (g - c) / (g + c) if g+c != 0 else 0
+
+# calendar = [x for x in rangex] ??? python-ism
+''' # 48 practice
+# windowing: add and drop
+
+seq = sys.argv[1]
+k = int(sys.argv[2])
+first = seq[0:k]
+g = first.count('G')
+c = first.count('C')
+for i in range(len(seq) -k+1):
+	off = seq[i]
+	on = seq[i+k]
+	if   off == 'C': c -=1
+	elif off == 'G': g -= 1
+	if   on == 'C': c += 1
+	elif on == 'G': g += 1
+	
+	
 
