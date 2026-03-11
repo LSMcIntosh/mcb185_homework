@@ -233,6 +233,9 @@ def char_count2(s):
 	for i in range(len(chars)):
 		if chars[i] == 0: continue
 		print(ascii(i), chars[i])
+
+# if ord(char[i]) outside of visible range (33, 126) it is invisible (0-32, 127+)
+
 ''' # 46 char_count
 ''' 
 # import argparse
@@ -389,7 +392,7 @@ for i in range(len(seq) -k+1):
 
 # calendar = [x for x in rangex] ??? python-ism
 ''' # 48 practice
-# windowing: add and drop
+'''
 
 seq = sys.argv[1]
 k = int(sys.argv[2])
@@ -403,6 +406,11 @@ for i in range(len(seq) -k+1):
 	elif off == 'G': g -= 1
 	if   on == 'C': c += 1
 	elif on == 'G': g += 1
-	
+	gc_comp = (g + c) / len(seq)
+	if g + c == 0: gc_skew = 0
+	else:		   gc_skew = (g - c) / (g + c)
+# what do I do with this?? report/print every iteration?? or how do I get
+# one value
+'''# windowing: add and drop
 	
 
