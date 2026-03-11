@@ -412,5 +412,23 @@ for i in range(len(seq) -k+1):
 # what do I do with this?? report/print every iteration?? or how do I get
 # one value
 '''# windowing: add and drop
-	
+'''
+Any resources for learning more bioinformatics 
+
+rosalind.io - programming puzzles
+bioinformatics research
+	- get into a lab
+
+compare tools and their effectiveness??
+like sequence aligners
+
+can you replicate an experiment??
+find out what programs work best under what circumstances
+
+be able to install other people's software and organize the files
+
+    - for the first 30 nt, I’m looking for an average KD >= 2.5 over a window size of 8 nt
+    - for the rest of the seq I’m looking for a window size of 11 with an average KD >. 2
+    - AND that the window doesn’t contain proline
+''' # 3/11/26 OH Notes
 
