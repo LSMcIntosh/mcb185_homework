@@ -45,6 +45,27 @@ while i < len(seq):
 		#	max_run = run_len
 		#	max_pos = run_start
 	i  += 1
+	
+	
+seq = 'ACGTAAAACGT'
+max_run = 0
+max_pos = 0
+i = 0
+
+while i < len(seq):
+	if seq[i] == 'A': # identify an A in seq
+		run_pos = i # assign start location
+		run_len = 1 # start counting # of As
+		for j in range(i+1, len(seq)): # rest of sequence after FIRST 'A'
+			if seq[j] == 'A': run_len +=1
+			else: break
+		i = j # starts after last 'A' counted previously
+		print('substring at', run_pos, 'for', run_len)
+		if run_len > max_run:
+			max_run = run_len
+			max_pos = run_pos
+	i += 1
+print('max substing at', max_pos, 'for', max_run)
 ''' # E3Q45 polyA
 '''
 write a program Fizzprime.py
@@ -101,14 +122,11 @@ PRINT(''.join(sed))
 	
 
 
-
-
-def dust(deq, k, t):
+def dust(seq, k, t):
 	sed = list(seq)
 	for i in range(len(seq) -k+1):
-		if entropy(seq[i:i+k] < t):
-			for k in range(i, i+k):
-				sed[j] = 'N'
+		if entropy(seq[i:i+k]) < t:
+			for k in range(i, i+k): sed[j] = 'N'
 ''' # dust, entropy filter (E3Q49)
 ''' # wow
 	# inefficient
@@ -124,44 +142,7 @@ def myentropy(s):
 		prob = num/sum(ntcount)
 		ntprob.append(prob)
 	# ughhhhh
-''' # really inefficient entropy calc (mine)
-'''
-# the function, exactly as I wrote it out on the exam
-def crazycase(string):
-	words = list(string)
-	for i, letter in enumerate(words):
-		if i % 2 == 0: words[i] = letter.lower()
-		else: 		   words[i] = letter.upper()
-	crazystring = ''.join(words)
-	return crazystring
-	
-string1 = 'this is a test'
-string2 = 'oooooooooo spooky'
-string3 = 'then why did i get this wrong'
-print(crazycase(string1))
-print(crazycase(string2))
-print(crazycase(string3))
-''' # crazycase test question
-'''
-# stats function exactly as I wrote it on the test:
-def stats(X):
-	X.sort()
-	n = len(X)
-	midpoint = n//2
-	tot1 = 0
-	for val in X: tot1 += val
-	mean = tot1/n
-	tot2 = 0
-	for val in X: tot2 += (val/mean)**2
-	stdev = (tot2/n)**(0.5)
-	if len(X) % 2 == 1: median = X[midpoint]
-	else: median = (X[midpoint] + X[midpoint + 1])/2
-	return mean, stdev, median
-	
-X = [1, 2, 3, 4, 5]
-res = stats(X)
-print(res[0], res[1], res[2])
-''' # stats test question
+''' # really inefficient entropy calc (ugh)
 # Notes 3/5
 '''
 def practice1():
@@ -222,7 +203,7 @@ def char_count1():
 			characters.append(c)
 			char_count.append(1)
 		else:
-		print('seen', c, )
+			print('seen', c, )
 			idx = characters.index(c)
 			char_count[idx] += 1
 			
